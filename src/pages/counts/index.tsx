@@ -227,7 +227,6 @@ export const CountsPage = () => {
                       <OptionBadge
                         options={COUNT_STATUS}
                         value={count.status}
-                        locale={locale}
                       />
                     </div>
                     {isActive ? (

@@ -16,12 +16,10 @@ const colorClasses: Record<string, string> = {
 export function OptionBadge({
   options,
   value,
-  locale,
   className,
 }: {
   options: OptionItem[];
   value?: string | null;
-  locale?: string;
   className?: string;
 }) {
   const option = options.find((item) => item.value === value);
@@ -32,7 +30,7 @@ export function OptionBadge({
       variant="secondary"
       className={cn("shrink-0", colorClasses[option.color ?? "default"], className)}
     >
-      {optionLabel(options, value, locale)}
+      {optionLabel(options, value)}
     </Badge>
   );
 }

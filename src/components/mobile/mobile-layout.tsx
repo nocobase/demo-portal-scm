@@ -1,27 +1,27 @@
 import { NavLink, Outlet } from "react-router";
 import { ClipboardList, ScanBarcode, TrendingUp } from "lucide-react";
-import { useGetLocale, useTranslate } from "@refinedev/core";
+import { useTranslate } from "@refinedev/core";
 
 import { cn } from "@/lib/utils";
 
 const tabs = [
   {
     to: "/scan",
-    key: "nav.scan",
+    key: "stockcount.nav.scan",
     labelZh: "扫码盘点",
     labelEn: "Scan",
     icon: ScanBarcode,
   },
   {
     to: "/counts",
-    key: "nav.counts",
+    key: "stockcount.nav.counts",
     labelZh: "盘点单",
     labelEn: "Counts",
     icon: ClipboardList,
   },
   {
     to: "/progress",
-    key: "nav.progress",
+    key: "stockcount.nav.progress",
     labelZh: "进度",
     labelEn: "Progress",
     icon: TrendingUp,
@@ -30,8 +30,6 @@ const tabs = [
 
 export function MobileBottomNav() {
   const translate = useTranslate();
-  const getLocale = useGetLocale();
-  const locale = getLocale();
 
   return (
     <nav className="sticky bottom-0 z-40 border-t border-border/80 bg-background/95 backdrop-blur-xl">
@@ -55,11 +53,7 @@ export function MobileBottomNav() {
                 <>
                   <Icon className={cn("size-5", isActive && "stroke-[2.25]")} />
                   <span>
-                    {translate(
-                      tab.key,
-                      { ns: "stockcount" },
-                      locale === "en-US" ? tab.labelEn : tab.labelZh
-                    )}
+                    {translate(tab.key, { ns: "stockcount" }, tab.labelEn)}
                   </span>
                 </>
               )}

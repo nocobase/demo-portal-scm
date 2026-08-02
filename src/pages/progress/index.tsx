@@ -140,7 +140,6 @@ export const ProgressPage = () => {
             <OptionBadge
               options={COUNT_STATUS}
               value={count.status}
-              locale={locale}
             />
           </div>
           <AIEmployeeShortcut
@@ -276,7 +275,7 @@ export const ProgressPage = () => {
                     <div className="text-[11px] text-muted-foreground">
                       {item.product?.sku}
                       {item.product?.unit
-                        ? ` · ${optionLabel(PRODUCT_UNITS, item.product.unit, locale)}`
+                        ? ` · ${optionLabel(PRODUCT_UNITS, item.product.unit)}`
                         : ""}
                     </div>
                   </div>
@@ -322,7 +321,6 @@ export const ProgressPage = () => {
                     <OptionBadge
                       options={ITEM_STATUS}
                       value={item.status}
-                      locale={locale}
                     />
                   </div>
                 </li>

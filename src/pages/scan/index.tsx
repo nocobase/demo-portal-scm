@@ -273,7 +273,6 @@ export const ScanPage = () => {
         count={activeCount}
         progress={progress}
         translate={translate}
-        locale={locale}
       />
 
       <section className="space-y-2">
@@ -362,7 +361,6 @@ export const ScanPage = () => {
           busy={busy}
           editable={isCountEditable(activeCount?.status)}
           translate={translate}
-          locale={locale}
           onSubmit={handleSubmit}
           onDismiss={() => {
             setProduct(undefined);
@@ -380,12 +378,10 @@ function ActiveCountCard({
   count,
   progress,
   translate,
-  locale,
 }: {
   count?: InventoryCountRecord;
   progress: { total: number; counted: number; diff: number };
   translate: ReturnType<typeof useTranslate>;
-  locale?: string;
 }) {
   if (!count) {
     return (
@@ -421,7 +417,6 @@ function ActiveCountCard({
           <OptionBadge
             options={COUNT_STATUS}
             value={count.status}
-            locale={locale}
           />
         </div>
         <span className="text-xs text-muted-foreground">
@@ -461,7 +456,6 @@ function ProductCountCard({
   busy,
   editable,
   translate,
-  locale,
   onSubmit,
   onDismiss,
 }: {
@@ -495,7 +489,7 @@ function ProductCountCard({
               {product.sku}
               {product.barcode ? ` · ${product.barcode}` : ""}
               {product.unit
-                ? ` · ${optionLabel(PRODUCT_UNITS, product.unit, locale)}`
+                ? ` · ${optionLabel(PRODUCT_UNITS, product.unit)}`
                 : ""}
             </p>
           </div>
