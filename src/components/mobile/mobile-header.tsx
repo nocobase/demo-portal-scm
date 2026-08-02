@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { LanguageToggle } from "@/components/app-shell/language-toggle";
 
 export function MobileHeader() {
   const translate = useTranslate();
@@ -39,6 +40,7 @@ export function MobileHeader() {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-1">
+        <LanguageToggle className="size-9" />
         <ThemeToggle className="size-9" />
         <MobileUserDropdown />
       </div>
