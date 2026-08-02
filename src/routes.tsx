@@ -1,11 +1,6 @@
 import { ClipboardList, ScanBarcode, TrendingUp } from "lucide-react";
 
 import { defineAppRoutes } from "@nocobase/portal-sdk/routing";
-import { AccessDenied } from "@/components/access-control/access-denied";
-import { CanAccess } from "@/components/access-control/can-access";
-import { ScanPage } from "@/pages/scan";
-import { CountsPage } from "@/pages/counts";
-import { ProgressPage } from "@/pages/progress";
 
 // Set this to false when the application no longer needs the example routes
 // contributed by installed Registry extensions. Providers, adapters, and the
@@ -19,15 +14,10 @@ export const appRoutes = defineAppRoutes([
   {
     name: "stockcount_scan",
     path: "/scan",
-    element: (
-      <CanAccess
-        resource="scm_inventory_count_items"
-        action="view"
-        fallback={<AccessDenied />}
-      >
-        <ScanPage />
-      </CanAccess>
-    ),
+    lazy: () =>
+      import("@/pages/route-components").then(
+        ({ StockCountScanRoute }) => ({ default: StockCountScanRoute })
+      ),
     resource: {
       meta: {
         label: "扫码盘点",
@@ -43,15 +33,10 @@ export const appRoutes = defineAppRoutes([
   {
     name: "stockcount_counts",
     path: "/counts",
-    element: (
-      <CanAccess
-        resource="scm_inventory_counts"
-        action="view"
-        fallback={<AccessDenied />}
-      >
-        <CountsPage />
-      </CanAccess>
-    ),
+    lazy: () =>
+      import("@/pages/route-components").then(
+        ({ StockCountListRoute }) => ({ default: StockCountListRoute })
+      ),
     resource: {
       meta: {
         label: "盘点单",
@@ -67,15 +52,12 @@ export const appRoutes = defineAppRoutes([
   {
     name: "stockcount_progress",
     path: "/progress",
-    element: (
-      <CanAccess
-        resource="scm_inventory_counts"
-        action="view"
-        fallback={<AccessDenied />}
-      >
-        <ProgressPage />
-      </CanAccess>
-    ),
+    lazy: () =>
+      import("@/pages/route-components").then(
+        ({ StockCountProgressRoute }) => ({
+          default: StockCountProgressRoute,
+        })
+      ),
     resource: {
       meta: {
         label: "进度",
