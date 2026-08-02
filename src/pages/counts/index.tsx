@@ -16,6 +16,58 @@ import { COUNT_STATUS } from "@/lib/stockcount/constants";
 import { createFullStocktake, getCountItems } from "@/lib/stockcount/api";
 import { getActiveCountId, setActiveCountId } from "@/lib/stockcount/store";
 import type { InventoryCountRecord } from "@/lib/stockcount/types";
+import {
+  BuildStoryBanner,
+  type BuildStory,
+} from "@/components/build-story/build-story-banner";
+
+const BUILD_STORY: BuildStory = {
+  models: ["DeepSeek V4 Flash 0731"],
+  intro: {
+    en: "Mobile stock-count — scan, count sheets, live progress.",
+    zh: "移动盘点 —— 扫码、盘点单、实时进度。",
+  },
+  tracks: [
+    {
+      label: {
+        en: "Data model — count sheets & items",
+        zh: "数据建模 — 盘点单与明细",
+      },
+      models: ["DeepSeek V4 Flash 0731"],
+      start: 0,
+      minutes: 8,
+    },
+    {
+      label: {
+        en: "Pages — scan, count sheets, progress",
+        zh: "页面 — 扫码/盘点单/进度",
+      },
+      models: ["DeepSeek V4 Flash 0731"],
+      start: 8,
+      minutes: 12,
+    },
+    {
+      label: { en: "Polish", zh: "打磨" },
+      models: ["DeepSeek V4 Flash 0731"],
+      start: 20,
+      minutes: 5,
+    },
+  ],
+  roles: [
+    {
+      name: { en: "Stocktaker", zh: "Stocktaker" },
+      can: { en: "Inventory counts & items", zh: "盘点单与明细" },
+      account: "stocktaker_demo@scm.demo",
+      password: "demo123456",
+    },
+    {
+      name: { en: "Viewer", zh: "Viewer" },
+      can: { en: "Read-only across the app", zh: "全应用只读" },
+      account: "viewer_demo@scm.demo",
+      password: "demo123456",
+    },
+  ],
+};
 
 type CountRow = InventoryCountRecord & {
   countedItems?: number;
@@ -87,6 +139,8 @@ export const CountsPage = () => {
 
   return (
     <div className="space-y-4 px-4 py-4">
+      <BuildStoryBanner story={BUILD_STORY} />
+
       <div className="flex items-center justify-between gap-3">
         <div>
           <h1 className="text-lg font-semibold">
