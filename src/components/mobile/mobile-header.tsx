@@ -11,10 +11,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { extensionUserMenuItems } from "@/app/extensions";
 import { LanguageToggle } from "@/components/app-shell/language-toggle";
 
 export function MobileHeader() {
   const translate = useTranslate();
+  const appName = translate(
+    "stockcount.appName",
+    { ns: "stockcount" },
+    "Stock Count"
+  );
 
   return (
     <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center justify-between border-b border-border/70 bg-background/95 px-4 backdrop-blur-xl">
@@ -23,7 +29,7 @@ export function MobileHeader() {
           <ScanBarcode className="size-4" />
         </span>
         <div className="min-w-0 leading-tight">
-          <div className="truncate text-sm font-semibold">
+          <div className="truncate text-sm font-semibold" title={appName}>
             {translate(
               "stockcount.appName",
               { ns: "stockcount" },
@@ -64,6 +70,9 @@ function MobileUserDropdown() {
         <div className="px-2 py-2">
           <UserInfo />
         </div>
+        {extensionUserMenuItems.map(({ id, Component }) => (
+          <Component key={id} />
+        ))}
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="mt-1 min-h-9 cursor-pointer gap-2 px-2 text-muted-foreground focus:text-foreground"
