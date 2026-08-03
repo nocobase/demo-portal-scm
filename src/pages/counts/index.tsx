@@ -24,8 +24,8 @@ import {
 const BUILD_STORY: BuildStory = {
   models: ["DeepSeek V4 Flash 0731"],
   intro: {
-    en: "Mobile stock-count — scan, count sheets, live progress.",
-    zh: "移动盘点 —— 扫码、盘点单、实时进度。",
+    en: "A phone app for stocktaking — scan and count, reconcile differences on the spot, with no more counting shelves on paper. This whole system was designed and built end-to-end by an AI coding agent. You can connect your own coding agent and keep developing it.",
+    zh: "手机上盘点用的应用:扫码点数、当场核对差异,不用再拿纸笔对着货架一个个数。整套系统从设计到实现,都由 AI coding agent 完成。你可以接入你的 Coding Agent,继续开发它。",
   },
   tracks: [
     {
